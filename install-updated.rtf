@@ -1,0 +1,68 @@
+{\rtf1\ansi\ansicpg1250\cocoartf1504\cocoasubrtf600
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;\csgray\c100000;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 apt-get update\
+apt-get -y upgrade\
+apt-get -y install git-core\
+git clone https://github.com/pzolta/openscan.git\
+(l\'e9trej\'f6n az OpenScan mapp\'e1ban az munkak\'f6nyvt\'e1r)\
+apt-get -y install python3\
+apt -y install python-pip\
+pip install apscheduler\
+pip install python-dateutil\
+apt-get -y install nmap\
+\
+apt-get install -y build-essential devscripts dpatch libassuan-dev \\\
+ libglib2.0-dev libgpgme11-dev libpcre3-dev libpth-dev libwrap0-dev libgmp-dev libgmp3-dev \\\
+ libgpgme11-dev libopenvas2 libpcre3-dev libpth-dev quilt cmake pkg-config \\\
+ libssh-dev libglib2.0-dev libpcap-dev libgpgme11-dev uuid-dev bison libksba-dev \\\
+ doxygen sqlfairy xmltoman sqlite3 libsqlite3-dev wamerican redis-server libhiredis-dev libsnmp-dev \\\
+ libmicrohttpd-dev libxml2-dev libxslt1-dev xsltproc libssh2-1-dev libldap2-dev autoconf nmap libgnutls-dev \\\
+libpopt-dev heimdal-dev heimdal-multidev libpopt-dev mingw32 \
+\
+apt-get -y install make git screen rsync sudo software-properties-common sqlite3 alien nsis rpm nmap libcurl4-gnutls-dev w3af-console python-setuptools pnscan netdiag slapd ldap-utils snmp ike-scan zip aptitude xsltproc texlive-latex-base texlive-latex-extra texlive-latex-recommended htmldoc w3af-console\
+\
+#ldap dobott egy kerdest\
+\
+#openvas elofeltetelei\
+#cd\
+git clone git://github.com/sstephenson/rbenv.git .rbenv\
+echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc\
+echo 'eval "$(rbenv init -)"' >> ~/.bashrc\
+exec $SHELL\
+ \
+git clone git://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build\
+echo 'export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"' >> ~/.bashrc\
+exec $SHELL\
+ \
+git clone https://github.com/sstephenson/rbenv-gem-rehash.git ~/.rbenv/plugins/rbenv-gem-rehash\
+ \
+rbenv install 2.2.3\
+rbenv global 2.2.3\
+ruby -v\
+\
+#openvas ppa telepites\
+add-apt-repository ppa:mrazavi/openvas\
+apt-get update\
+apt-get -y install openvas #itt kert egy megerositest\
+\
+openvas-nvt-sync\
+openvas-scapdata-sync\
+openvas-certdata-sync\
+\
+https://packages.debian.org/sid/all/python3-apscheduler/download\
+https://packages.debian.org/sid/all/python3-tz/download\
+https://packages.debian.org/sid/all/python3-tzlocal/download\
+\
+service openvas-scanner restart\
+service openvas-manager restart\
+openvasmd --rebuild --progress\
+\
+openvasmd-stop\
+openvasmd --create-user=vulscan --role=Admin\
+openvasmd --user=vulscan --new-password=vulscan\
+openvasmd-start}
