@@ -1472,9 +1472,18 @@ class openVAS(object):
                             """Alapveto result adatok lekerese"""
                             resultId = r.getAttribute('id')
                             rName = r.getElementsByTagName('name')[0].firstChild.nodeValue
-                            rCreationTime = r.getElementsByTagName('creation_time')[0].firstChild.nodeValue
-                            rHost = r.getElementsByTagName('host')[0].firstChild.nodeValue
-                            rPort = r.getElementsByTagName('port')[0].firstChild.nodeValue
+                            if len(r.getElementsByTagName('creation_time')) > 0:
+                                rCreationTime = r.getElementsByTagName('creation_time')[0].firstChild.nodeValue
+                            else:
+                                rCreationTime = "n/a"
+                            if len(r.getElementsByTagName('host')) > 0:
+                                rHost = r.getElementsByTagName('host')[0].firstChild.nodeValue
+                            else:
+                                rHost = "n/a"
+                            if len(r.getElementsByTagName('port')) > 0:
+                                rPort = r.getElementsByTagName('port')[0].firstChild.nodeValue
+                            else:
+                                rPort = "n/a"
 
                             """NVT adatok lekerese"""
                             nvt = r.getElementsByTagName('nvt')
@@ -1509,28 +1518,41 @@ class openVAS(object):
                                     tags = "n/a"
 
                             """Veszelyesseg, pontossag lekerese"""
-                            if r.getElementsByTagName('threat')[0].firstChild is not None:
-                                rThreat = r.getElementsByTagName('threat')[0].firstChild.nodeValue
+                            if len(r.getElementsByTagName('threat')) > 0:
+                                if r.getElementsByTagName('threat')[0].firstChild is not None:
+                                    rThreat = r.getElementsByTagName('threat')[0].firstChild.nodeValue
+                                else:
+                                    rThreat = "n/a"
                             else:
                                 rThreat = "n/a"
-                            if r.getElementsByTagName('severity')[0].firstChild is not None:
-                                rSeverity = r.getElementsByTagName('severity')[0].firstChild.nodeValue
+                            if len(r.getElementsByTagName('severity')) > 0:
+                                if r.getElementsByTagName('severity')[0].firstChild is not None:
+                                    rSeverity = r.getElementsByTagName('severity')[0].firstChild.nodeValue
+                                else:
+                                    rSeverity = "n/a"
                             else:
                                 rSeverity = "n/a"
 
-                            rQOD = r.getElementsByTagName('qod')[0]
-                            if rQOD.getElementsByTagName('value')[0].firstChild is not None:
-                                rQuallityOfDetectionValue = rQOD.getElementsByTagName('value')[0].firstChild.nodeValue
+                            if len(r.getElementsByTagName('qod')) > 0:
+                                rQOD = r.getElementsByTagName('qod')[0]
+                                if rQOD.getElementsByTagName('value')[0].firstChild is not None:
+                                    rQuallityOfDetectionValue = rQOD.getElementsByTagName('value')[0].firstChild.nodeValue
+                                else:
+                                    rQuallityOfDetectionValue = "n/a"
+                                if rQOD.getElementsByTagName('type')[0].firstChild is not None:
+                                    rDetectionType = rQOD.getElementsByTagName('type')[0].firstChild.nodeValue
+                                else:
+                                    rDetectionType = "n/a"
                             else:
                                 rQuallityOfDetectionValue = "n/a"
-                            if rQOD.getElementsByTagName('type')[0].firstChild is not None:
-                                rDetectionType = rQOD.getElementsByTagName('type')[0].firstChild.nodeValue
-                            else:
                                 rDetectionType = "n/a"
 
                             """Leiras lekerese"""
-                            if r.getElementsByTagName('description')[0].firstChild is not None:
-                                rDesctiption = r.getElementsByTagName('description')[0].firstChild.nodeValue
+                            if len(r.getElementsByTagName('description')) > 0:
+                                if r.getElementsByTagName('description')[0].firstChild is not None:
+                                    rDesctiption = r.getElementsByTagName('description')[0].firstChild.nodeValue
+                                else:
+                                    rDesctiption = "n/a"
                             else:
                                 rDesctiption = "n/a"
 
