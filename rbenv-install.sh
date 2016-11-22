@@ -1,4 +1,5 @@
 #!/bin/bash
+HOME='/root'
 cd
 git clone git://github.com/sstephenson/rbenv.git .rbenv
 echo 'export PATH="/root/.rbenv/bin:$PATH"' >> ~/.bash_profile
