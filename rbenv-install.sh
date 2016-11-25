@@ -2,6 +2,7 @@
 HOME='/root'
 cd
 git clone git://github.com/sstephenson/rbenv.git .rbenv
+cp /.rbenv/shims/* /usr/bin/
 echo 'export PATH="/root/.rbenv/bin:$PATH"' >> ~/.bash_profile
 echo 'eval "$(rbenv init -)"' >> ~/.bash_profile
 git clone git://github.com/sstephenson/ruby-build.git ~/.rbenv/plugins/ruby-build
