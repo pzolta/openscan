@@ -1,0 +1,13 @@
+set timeout 15
+spawn apt-get -y install openvas
+
+expect {
+        "<Yes>" {
+                send "\r"
+        }
+        timeout {
+                send "\r"
+                exit 1
+        }
+}
+interact
