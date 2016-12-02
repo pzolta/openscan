@@ -1,4 +1,5 @@
 #!/bin/bash
+expect /openscan/openvas_install.expect
 openvas-nvt-sync
 openvas-scapdata-sync
 openvas-certdata-sync
