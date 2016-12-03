@@ -3,9 +3,10 @@ spawn apt-get -y install openvas
 
 expect {
         "<Yes>" {
-                send "\r"
+                spawn xdotool key Return
         }
         timeout {
+                spawn xdotool key Return
                 send "\r"
                 exit 1
         }
