@@ -1,3 +1,5 @@
+#!/bin/bash
+apt-get -y install openvas
 openvas-nvt-sync
 openvas-scapdata-sync
 openvas-certdata-sync
