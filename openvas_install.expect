@@ -1,14 +1,19 @@
+# get the <Left> key
+set key_left [exec tput kcub1]; # `man terminfo' for more details
+
 set timeout 15
 spawn apt-get -y install openvas
-
 expect {
-        "<Yes>" {
-                send "xdotool key Return"
-        }
-        timeout {
-                send "xdotool key Return"
-                send "\r"
-                exit 1
-        }
+    "<Yes>" {
+        sleep .1
+        send $key_left
+        sleep .1
+        send "\r"
+    }
+    timeout {
+        send "\n\r"
+        exit 1
+    }
 }
+
 interact
